@@ -264,7 +264,7 @@ def angular_Selecting(ros_data):  # Function setting angular velocity
     image_np, angular = turtle_video_siljun.line_trace(
         image_np, stage, verbose=False)
 
-    #########################<<< Show processed image >>>##############################
+    # <<< Show processed image >>>##############################e
     cv2.imshow('video', image_np)
     cv2.waitKey(1) & 0xFF
 
@@ -287,11 +287,13 @@ def Stage_Selecting(ros_data):
     global match_len
 
     ############################<<< Stage Selecting >>>############################
+    # s_g == second green
     if s_g < 2 and stage == 100:
         keypoints_green = turtle_video_siljun.find_color(
             blob_ROI, lower_green, upper_green, 0)
         if keypoints_green:
-            stage = 100
+            # TODO Check: stage = 100
+            stage = 0
             print('sinho!')
 
     if line_count < 3 and stage == 100:
@@ -339,7 +341,6 @@ def Stage_Selecting(ros_data):
 
 
 ######################################################################################################
-
 
 rospy.Subscriber('/camera/image/compressed', CompressedImage,
                  Stage_Selecting,  queue_size=1)
