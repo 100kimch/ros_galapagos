@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="type" default="full"/>
+    <!-- <arg name="dirname" default="$(dirname)"> -->
+    <node name="runner_$(arg type)" pkg="galapagos" type="lib_runner.py" args="$(arg type)" output="screen" cwd="ROS_HOME" />
+</launch>

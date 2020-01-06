@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="type" default="full"/>
+    <arg name="debug" default="False"/>
+    <arg name="timer" default="True"/>
+    <node name="runner_$(arg type)" pkg="galapagos_embedded" type="launcher.py" args="$(arg type) $(arg debug) $(arg timer)" output="screen" cwd="ROS_HOME" />
+</launch>
