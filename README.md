@@ -18,6 +18,8 @@ This project consists three packages:
 - `galapagos_v2`: 주 패키지이며, 디버깅 모드와 다양한 센서들을 부착하기 위한 확장성을 가지고 있습니다.
 - `galapagos_embedded`: 라즈베리파이 보드에서 영상처리를 하기 위해 별도의 패키지로 구성하였습니다. `galapagos_v2` 코드에서부터 시작되었습니다.
 
+![main.jpeg](https://user-images.githubusercontent.com/10914972/71902442-71648780-31a5-11ea-80b3-c2a586959490.jpeg)
+
 ## Specifications
 
 ### Hardware
