@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="type" default="viewer"/>
+    <arg name="debug" default="True"/>
+    <arg name="timer" default="True"/>
+    <node name="viewer_$(arg type)" pkg="galapagos_lite" type="launcher.py" args="$(arg type) $(arg debug) $(arg timer)" output="screen" cwd="ROS_HOME" />
+</launch>
