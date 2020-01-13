@@ -1,53 +1,67 @@
-# 2020 STEAMCUP 개요
+# Galapagos, a ROS Package for autoracing
 
-- 건국대학교 공과대학 전기전자공학부 소속 학부생 4인은 ROS 및 터틀봇을 이용한 2020 STEAMCUP에 다음과 같은 내용으로 참가하려고 합니다.
-- 기간: 2019. 07. 23 ~ 2019. 01. 19
-- 참여 인원: 김지형 등 4명
-  - 김지형 (14)
-  - 지건영 (14)
-  - 송민수 (14)
-  - 강민지 (18)
+This `Galapagos` project is for autoracing Turtlebot 3 burger in the steamcup 2020 map, which includes 6 missions: `Traffic Signal`, `Intersection`, `In construction`, `Stop Signal`, and `Tunnel`. This package at least needs a lidar sensor and two cameras. For any questions or suggestions, feel free to contact [Kim Jihyeong](kjhricky@gmail.com)
 
-## 경기 개요
+본 프로젝트는 ROS 기반 터틀봇3 버거로 스팀컵 2020 자율주행 맵을 주행하기 위한 `갈라파고스` 패키지입니다. `신호등`, `교차로`, `공사구간`, `차단바`, `터널` 등의 구간으로 이루어져 있는데, 1대의 라이다 센서와 2대의 카메라 모듈을 기반으로 작동합니다. 문의사항은 언제든지 [다음 이메일](kjhricky@gmail.com)에 남겨 주세요.
 
-- ROS 소프트웨어에서 운용가능한 모바일 플랫폼을 기반으로 자율주행 코드를 작성하고 주행능력 및 미션해결 능력을 평가
-- 터틀봇3 버거를 이용해야 하며, 중간제어기는 OpenCR, 구동장치는 다이나믹셀 XL만 사용 가능, 크기 무게의 변형에 제한이 없음
-- 대회 일정
-  - 예선 1차: 8월 14일 (부산 로봇 경진대회와 연동)
-  - 예선 2차: 9월 22일 (로보티즈 캠퍼스)
-  - 예선 3차: 10월 20일 (로보티즈 캠퍼스)
-- 경기 방법
-  1. 모든 팀은 3번의 예선, 각 예선당 1번의 기회가 주어지며 최고 점수를 최종점수로 한다.
-  2. 경기 시작 이후 접촉 시 5점 감점
-  3. 로봇 정지 시간이 30초 이상 지속 시 실격
-  4. 팀당 최대 10분 (준비 시간 5분, 미션 수행 제한시간 5분)
-- 심사 기준 (각 20점, 총 140점)
-  - 신호등 구간
-  - 주차 구간
-  - 차단바 구간
-  - 터널 구간
-  - 삼거리 구간
-  - 공사 구간
-  - 시간 점수
+## File Systems
 
-## 팀원별 역할
+This project consists three packages:
 
-- 김지형: 팀장, 알고리즘 개발
-- 송민수: 알고리즘 개발, 영상 처리
-- 지건영: 알고리즘 개발, 영상 처리
-- 강민지: 트랙 구성, 퍼실레이터
+- `galapagos`: initial package but deprecated. Just use it for reference only.
+- `galapagos_v2`: main package to run. Designed for wide scalability of various types of sensors and debugging modes.
+- `galapagos_embedded`: a package porked from `galapagos_v2`. Image Processing is processed in Raspberry Pi board.
 
-## 진행 계획
+본 프로젝트는 3개의 패키지를 가지고 있습니다:
 
-- 17년도 수상작 코드를 바탕으로 1차 예선을 위한 빠른 프로토타이핑을 끝내고 주행 로봇을 완성시킨다.
-- 향상된 알고리즘을 적용 및 코드 최적화를 통하여 2차 예선을 준비한다.
-- 향상된 알고리즘을 안정화하여 로봇을 완성한다. 여유 시간이 있을 시 엔비디아 Jetson Nano 보드를 이용하여 GPU 이용 및 딥러닝 알고리즘을 적용한다.
-- 트랙 구성은 시작일로부터 2주 뒤인 8웡 2일 금요일 완성을 목표로 한다. 강민지 학우가 트랙 구성을 총괄하며, 권미경 학우 및 소모임 1학년 회원들이 아두이노를 이용한 신호등, 차단바 제작을 통해 트랙구성을 돕는다.
-- 진행된 모든 과정은 깃허브 프로젝트 및 마크다운을 이용하여 문서화한다.
+- `galapagos`: 초창기 패키지이나 지금은 사용되지 않습니다. 참고용으로만 사용하세요.
+- `galapagos_v2`: 주 패키지이며, 디버깅 모드와 다양한 센서들을 부착하기 위한 확장성을 가지고 있습니다.
+- `galapagos_embedded`: 라즈베리파이 보드에서 영상처리를 하기 위해 별도의 패키지로 구성하였습니다. `galapagos_v2` 코드에서부터 시작되었습니다.
 
-## 소요 예산
+![main.jpeg](https://user-images.githubusercontent.com/10914972/71902442-71648780-31a5-11ea-80b3-c2a586959490.jpeg)
 
-- 별도 첨부
-  - 1차 예선 (부산) 참가 경비
-  - 터틀봇 센서 등 하드웨어 물품
-  - 트랙 제작
+## Specifications
+
+### Hardware
+
+- Raspberry Pi 3 Model B+
+- Logitech C270 (1EA for default, extra 1EA can be installed for stability)
+- Raspicam 1EA
+- LDS-01 Lidar
+- OpenCR
+- DYNAMIXEL Motor 2EA
+
+### Software
+
+터틀봇 버거 및 노트북 환경 설정을 다음과 같이 진행합니다.
+
+#### for Turtlebot3 Burger
+
+- Raspbian OS
+  - Python 3.6 or above
+  - ROS (Kinetic Kame)
+  - packages on catkin_ws/src/
+    - raspicam_node
+    - hls_lfcd_lds_driver
+    - usb_cam
+    - common_msgs
+    - turtlebot3
+    - turtlebot3_autorace
+    - turtlebot3_msgs
+
+#### for Laptop PC (Remote PC)
+
+- Ubuntu 18.04
+  - Python 3.6 or above
+  - ROS (Melodic Morenia)
+  - OpenCV 3.4.0
+  - packages on catkin_ws/src/
+    - turtlebot3
+    - turtlebot3_msgs
+    - turtlebot3_simulations
+    - turtlebot3_autorace
+    - common_msgs
+
+## Other Information or manuals
+
+are uploaded on [Wiki Page](https://github.com/100kimch/ros_galapagos/wiki)
