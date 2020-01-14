@@ -521,7 +521,11 @@ class Eye(dict):
         ret, thresh = cv2.threshold(blur, 50, 255, cv2.THRESH_BINARY)
 
         # NOTE: Finding contours for the thresholded image
-        im2, contours, hierarchy = cv2.findContours(
+        # im2, contours, hierarchy = cv2.findContours(
+        #     thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        # )
+        # NOTE: for openCV 4.0
+        contours, hierarchy = cv2.findContours(
             thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
         )
 
