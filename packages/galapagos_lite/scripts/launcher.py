@@ -3,9 +3,14 @@
 
 import rospy
 import sys
-try:
+
+if '/opt/ros/kinetic/lib/python2.7/dist-packages' in sys.path:
     sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
     sys.path.append('/opt/ros/kinetic/lib/python3.5/dist-packages')
+
+if '/opt/ros/melodic/lib/python2.7/dist-packages' in sys.path:
+    sys.path.remove('/opt/ros/melodic/lib/python2.7/dist-packages')
+    sys.path.append('/opt/ros/melodic/lib/python3.5/dist-packages')
 
 print()
 print("========= GALAPAGOS TURTLE =========")
