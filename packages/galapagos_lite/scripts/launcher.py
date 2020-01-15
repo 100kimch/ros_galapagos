@@ -32,6 +32,12 @@ from scheduler import SCHEDULER
 # * init codes
 SCHEDULER.import_modules()
 
+print(rospy.get_namespace())
+print()
+print()
+print()
+print()
+
 if sys.argv[2] == "True":
     rospy.init_node('GA_' + sys.argv[1],
                     anonymous=False, log_level=rospy.DEBUG)
