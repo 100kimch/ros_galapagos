@@ -24,11 +24,13 @@ MIN_FISH = np.array([int(0 * 255 / 360), int(0 * 255 / 100), int(0 * 255 / 100)]
 MAX_FISH = np.array([int(360 * 255 / 360), int(52 * 255 / 100), int(100 * 255 / 100)])
 
 # NOTE: catches yellow line only
-MIN_SUB_Y = np.array([int(1 * 255 / 360), int(75 * 255 / 100), int(0 * 255 / 100)])
-MAX_SUB_Y = np.array([int(270 * 255 / 360), int(100 * 255 / 100), int(100 * 255 / 100)])
+# MIN_SUB_Y = np.array([int(1 * 255 / 360), int(78 * 255 / 100), int(0 * 255 / 100)])
+# MAX_SUB_Y = np.array([int(270 * 255 / 360), int(100 * 255 / 100), int(100 * 255 / 100)])
+MIN_SUB_Y = np.array([int(50 * 255 / 360), int(78 * 255 / 100), int(0 * 255 / 100)])
+MAX_SUB_Y = np.array([int(280 * 255 / 360), int(100 * 255 / 100), int(100 * 255 / 100)])
 
 # NOTE: catches both yellow and white line
-MIN_SUB = np.array([int(0 * 255 / 360), int(70 * 255 / 100), int(80 * 255 / 100)])
+MIN_SUB = np.array([int(0 * 255 / 360), int(73 * 255 / 100), int(75 * 255 / 100)])
 MAX_SUB = np.array([int(360 * 255 / 360), int(100 * 255 / 100), int(100 * 255 / 100)])
 
 CAMERA_MATRIX = np.array(ARRAY_K)
@@ -51,7 +53,7 @@ class Eye(dict):
         # self.has_rospy = True # ! deprecated
         self.images = {}
         self.mask = None
-        self.check_yellow = False
+        self.check_yellow = True
         self.is_window_set = False
         self.info_front = {
             "state": "straight",
@@ -80,10 +82,10 @@ class Eye(dict):
         self.publishing_names = []
 
         if SCHEDULER.debug_mode:
-            # self.publishing_names = ["front/original", "front/canny", "front/adjusted", "front/result", "sub/original", "sub/canny", "sub/masked"]
-            self.publishing_names = []
-            # self.publishing_names = ["front/result", "sub/masked"]
-        # else:
+            self.publishing_names = ["front/original", "front/canny", "front/adjusted", "front/result", "sub/original", "sub/canny", "sub/masked"]
+            # self.publishing_names = []
+        else:
+            self.publishing_names = ["front/result", "sub/masked"]
         #     self.publishing_names = []
 
         for i in self.publishing_names:
@@ -521,13 +523,13 @@ class Eye(dict):
         ret, thresh = cv2.threshold(blur, 50, 255, cv2.THRESH_BINARY)
 
         # NOTE: Finding contours for the thresholded image
-        # im2, contours, hierarchy = cv2.findContours(
-        #     thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
-        # )
-        # NOTE: for openCV 4.0
-        contours, hierarchy = cv2.findContours(
+        im2, contours, hierarchy = cv2.findContours(
             thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
         )
+        # NOTE: for openCV 4.0
+        # contours, hierarchy = cv2.findContours(
+        #     thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        # )
 
         # # NOTE: create hull array for convex hull points
         # hull = []

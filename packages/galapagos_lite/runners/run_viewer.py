@@ -10,7 +10,8 @@ from scheduler import SCHEDULER
 
 TURTLE.disable()
 
-SCHEDULER.set_state("parking")
+SCHEDULER.set_state("default")
+# SCHEDULER.set_state("parking")
 # SCHEDULER.set_state("construction")
 
 rospy.Subscriber(PATH_USBCAM, CompressedImage,

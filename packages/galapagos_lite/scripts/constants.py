@@ -55,12 +55,12 @@ THRESHOLDS = {
 LIDAR_DIRECTIONS = {
     'front': 0,
     'left_biased': 10,
-    'leftside': 40,
-    'frontleft': 45,
+    'leftside': 60,
+    'frontleft': 25,
     'left': 90,
     'leftback': 100,
     'back': 180,
     'right': 270,
-    'frontright': 315,
+    'frontright': 335,
     'right_biased': 350
 }

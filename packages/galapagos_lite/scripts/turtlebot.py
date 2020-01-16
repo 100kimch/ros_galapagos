@@ -101,11 +101,11 @@ class Turtle(dict):
         #     SCHEDULER.check_time("speed_smooth", min=0.2)
 
         diff_speed = abs(self._speed - self._speed_smooth)
-        if diff_speed > 0.0002:
+        if diff_speed > 0.0005:
             if self._speed < self._speed_smooth:
-                self._speed += 0.0002
+                self._speed += 0.0005
             elif self._speed > self._speed_smooth:
-                self._speed -= 0.0002
+                self._speed -= 0.0005
         elif diff_speed is not 0:
             self._speed = self._speed_smooth
 
@@ -183,7 +183,7 @@ class Turtle(dict):
         self.set_speed("stop")
         return
 
-    def go_turn(self, direction, duration=1.9, angular=0.9, speed=0.09):
+    def go_turn(self, direction, duration=2.0, angular=0.9, speed=0.09):
         # if not self._enable_setter:
             # return
         self._enable_setter = False

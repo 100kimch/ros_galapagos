@@ -317,12 +317,20 @@ def process_parking():
         return
 
     elif STEP == 12:
-        # Edit HERE
+        SCHEDULER.disable_cams()
+        TURTLE.set_speed("normal")
+        TURTLE.go_forward(2.5)
+        TURTLE.go_turn("left", 2)
+        STEP = 15
+        rospy.logdebug("[PROC] STEP changed to {}".format(STEP))
         return
 
-
     elif STEP == 13:
-        # Edit HERE
+        SCHEDULER.disable_cams()
+        TURTLE.set_speed("normal")
+        TURTLE.go_turn("right", angular=1.8, duration=1.2)
+        STEP = 15
+        rospy.logdebug("[PROC] STEP changed to {}".format(STEP))
         return
 
     elif STEP == 14:
@@ -334,17 +342,20 @@ def process_parking():
         return
 
     elif STEP == 15:
-        # Edit HERE
+        TURTLE.go_forward(2.0)
+        # for stopping for a while
+        rospy.sleep(rospy.Duration(0.5))
 
     elif STEP == 16:
-        # Edit HERE
+        TURTLE.go_backward(1.5)
 
     elif STEP == 17:
-        # Edit HERE
+        TURTLE.go_turn_backward(1.2)
 
     elif STEP == 18:
-        # Edit HERE
-
+        TURTLE.set_speed("normal")
+        TURTLE.go_forward(3)
+        # rospy.sleep(rospy.Duration(3))
     elif STEP == 19:
         TURTLE.set_speed("fast")
         SCHEDULER.set_state("zigzag")
