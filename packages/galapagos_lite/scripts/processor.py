@@ -335,15 +335,19 @@ def process_parking():
 
     elif STEP == 15:
         # Edit HERE
+        return
 
     elif STEP == 16:
         # Edit HERE
+        return
 
     elif STEP == 17:
         # Edit HERE
+        return
 
     elif STEP == 18:
         # Edit HERE
+        return
 
     elif STEP == 19:
         TURTLE.set_speed("fast")
